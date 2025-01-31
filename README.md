@@ -1,5 +1,5 @@
 # TalkitAPI-docs
-[Talkit](https://nandeyanen.ie-t.net/talkit)のAPIの仕様書です。OpenAPIに準拠しています。
+[Talkit](https://nandeyanen.ie-t.net/talkit)のAPIの仕様書です。OpenAPI3.0に準拠しています。
 
 > [!WARNING]
 > この機能は現在開発中です。また、内容は予告なく変更される場合があります
