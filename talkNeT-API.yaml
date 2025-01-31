@@ -140,32 +140,6 @@ paths:
                     format: date-time
         '404':
           description: No posts exist
-    delete:
-      summary: DelPost
-      parameters:
-        - name: postId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sessionId:
-                  type: string
-              required:
-                - sessionId
-      responses:
-        '200':
-          description: Del success
-        '401':
-          description: Auth Failed
-        '403':
-          description: No permission
 
   /posts/{postId}/comments:
     post:
@@ -190,9 +164,9 @@ paths:
               required:
                 - sessionId
                 - comment
-      responses: Comment success
+      responses: 
         '201':
-          description: 
+          description: Comment Success
           content:
             application/json:
               schema:
@@ -232,3 +206,32 @@ paths:
           description: Auth Failed
         '404':
           description: No posts exist
+
+  /posts/{postId}/delete:
+    post:
+      summary: DelPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+              required:
+                - sessionId
+      responses:
+        '200':
+          description: Del success
+        '401':
+          description: Auth Failed
+        '403':
+          description: No permission
+
