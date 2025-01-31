@@ -2,6 +2,12 @@
 
 ## サポートされているAPIバージョン
 
+### Talkit API
+| Version | Supported          |
+| ------- | ------------------ |
+|   1.0   |         ◯          |
+
+### TalkNeT API
 | Version | Supported          |
 | ------- | ------------------ |
 |   1.0   |         ◯          |
