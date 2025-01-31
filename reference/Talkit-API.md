@@ -1,4 +1,4 @@
-# Talkit API
+# Talkit API 
 ## バージョン
 - **API バージョン**: 1.0.0
 
