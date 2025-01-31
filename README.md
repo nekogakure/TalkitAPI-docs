@@ -12,3 +12,9 @@ yamlを[こちら](https://editor.swagger.io)で読み込むとより詳細な�
 ## API reference
 - [Talkit API v1](https://github.com/nekogakure/TalkitAPI-docs/blob/main/reference/Talkit-API.md)
 - [TalkNeT API v1](https://github.com/nekogakure/TalkitAPI-docs/blob/main/reference/TalkNeT-API.md)
+
+------
+
+### 法的事項
+
+(c)Nandeyanen org. このドキュメントの無断転載を禁じます。
