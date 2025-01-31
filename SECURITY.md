@@ -13,4 +13,5 @@
 |   1.0   |         ◯          |
 
 ## 脆弱性の報告
-info@nandeyanen.ie-t.netまでご連絡ください。
+
+[報告ページ](https://github.com/nekogakure/TalkitAPI-docs/security/advisories)より報告お願いします
