@@ -7,7 +7,7 @@ yamlを[こちら](https://editor.swagger.io)で読み込むとより詳細な�
 > 足りないapiや、おかしいところがあればPullRequest、もしくはissuesでお願いします！
 
 > [!WARNING]
-> この機能は現在開発中です。また、内容は予告なく変更される場合があります
+> このAPIは現在開発中です。また、内容は予告なく変更される場合があります
 
 ## API reference
 - [Talkit API v1](https://github.com/nekogakure/TalkitAPI-docs/blob/main/reference/Talkit-API.md)
