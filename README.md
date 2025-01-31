@@ -41,7 +41,9 @@ yamlを[こちら](https://editor.swagger.io)で読み込むとより詳細な�
 - **レスポンス:**
   - `200 OK`: ログアウト成功
   - `401 Unauthorized`: 無効なセッションID
+
 ------
+
 ## TalkNeT API
 ### バージョン
 - **API バージョン**: 1.0.0
