@@ -65,18 +65,19 @@
   - `404 Not Found`: 投稿が存在しない
 
 #### 6. 投稿の削除
-**DELETE /posts/{postId}**
+
+**POST /posts/{postId}/delete**
 - 認証済みのユーザーが自身の投稿を削除できます。
-- **リクエストボディ:**
+- **リクエストボディ**:
   ```json
-  {
-    "sessionId": "string"
-  }
+    {
+      "sessionId": "string"
+    }
   ```
-- **レスポンス:**
-  - `200 OK`: 削除成功
-  - `401 Unauthorized`: 認証失敗
-  - `403 Forbidden`: 権限なし
+- **レスポンス**:
+  - 200 OK: 削除成功
+  - 401 Unauthorized: 認証失敗
+  - 403 Forbidden: 権限なし
 
 #### 7. コメントの投稿
 **POST /posts/{postId}/comments**
