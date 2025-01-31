@@ -1,5 +1,6 @@
 # TalkitAPI-docs
 [Talkit](https://nandeyanen.ie-t.net/talkit)のAPIの仕様書です。OpenAPI3.0に準拠しています。
+yamlを[こちら](https://editor.swagger.io)で読み込むとより詳細なレスポンスなどがわかります
 
 > [!WARNING]
 > この機能は現在開発中です。また、内容は予告なく変更される場合があります
