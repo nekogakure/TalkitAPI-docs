@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Talkit API
+  version: 1.0.0
+
+paths:
+  /login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Login success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+        '401':
+          description: Auth failed
+
+  /logout:
+    post:
+      summary: Logout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+              required:
+                - sessionId
+      responses:
+        '200':
+          description: Logout Success
+        '401':
+          description: invalid SessionID
