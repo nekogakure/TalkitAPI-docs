@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  title: TalkNeT API
+  version: 1.0.0
+
+paths:
+  /login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Login success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+        '401':
+          description: Auth failed
+
+  /logout:
+    post:
+      summary: Logout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+              required:
+                - sessionId
+      responses:
+        '200':
+          description: Logout Success
+        '401':
+          description: invalid SessionID
+
+  /posts:
+    post:
+      summary: newPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+                content:
+                  type: string
+              required:
+                - sessionId
+                - content
+      responses:
+        '201':
+          description: Post success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: string
+        '401':
+          description: Auth failed
+    get:
+      summary: GetPostIndex
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [latest, random]
+        - name: count
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Get Post index success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    postId:
+                      type: string
+
+  /posts/{postId}:
+    get:
+      summary: GetPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  postId:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+        '404':
+          description: No posts exist
+    delete:
+      summary: DelPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+              required:
+                - sessionId
+      responses:
+        '200':
+          description: Del success
+        '401':
+          description: Auth Failed
+        '403':
+          description: No permission
+
+  /posts/{postId}/comments:
+    post:
+      summary: NewComment
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+                comment:
+                  type: string
+              required:
+                - sessionId
+                - comment
+      responses: Comment success
+        '201':
+          description: 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commentId:
+                    type: string
+        '401':
+          description: Auth Failed
+        '404':
+          description: No posts exist
+
+  /posts/{postId}/love:
+    post:
+      summary: AddLike
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sessionId:
+                  type: string
+              required:
+                - sessionId
+      responses:
+        '200':
+          description: Like Success
+        '401':
+          description: Auth Failed
+        '404':
+          description: No posts exist
