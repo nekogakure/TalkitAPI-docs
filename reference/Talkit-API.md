@@ -1,4 +1,6 @@
 # Talkit API 
+## OpenAPI仕様
+[Talkit-API.yaml](https://github.com/nekogakure/TalkitAPI-docs/blob/main/Talkit-API.yaml)
 ## バージョン
 - **API バージョン**: 1.0.0
 
