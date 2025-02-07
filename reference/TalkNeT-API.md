@@ -1,4 +1,6 @@
 # TalkNeT API 
+## OpenAPI仕様
+[TalkNeT-API.yaml](https://github.com/nekogakure/TalkitAPI-docs/blob/main/talkNeT-API.yaml)
 ## バージョン
 - **API バージョン**: 1.0.0
 
