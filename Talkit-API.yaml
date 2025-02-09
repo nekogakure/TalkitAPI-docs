@@ -53,4 +53,28 @@ paths:
         '200':
           description: Logout Success
         '401':
-          description: invalid SessionID
+          description: Auth failed
+  
+  /get_notice:
+    get:
+      summary: getNoitce
+      parameters:
+        - in: query
+          name: sessionId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Notice get success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notices:
+                    type: array
+                    items:
+                      type: string
+        '401':
+          description: Auth failed
