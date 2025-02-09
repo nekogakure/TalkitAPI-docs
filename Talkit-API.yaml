@@ -3,6 +3,9 @@ info:
   title: Talkit API
   version: 1.0.0
   description: Talkit全般のAPI
+servers:
+  - url: https://nandeyanen.ie-t.net/talkit/api/v1
+    description: （使用できません）Version 1
 
 paths:
   /login:
