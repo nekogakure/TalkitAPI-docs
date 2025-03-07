@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: TalkNeTのAPI
 servers:
-  - url: https://nandeyanen.ie-t.net/talkit/api/v1/talkit
+  - url: https://nandeyanen.ie-t.net/talkit/api/v1/TalkNeT
     description: （使用できません）Version 1
 
 paths:
@@ -18,12 +18,9 @@ paths:
             schema:
               type: object
               properties:
-                sessionId:
-                  type: string
                 content:
                   type: string
               required:
-                - sessionId
                 - content
       responses:
         '201':
@@ -37,22 +34,26 @@ paths:
                     type: string
         '401':
           description: Auth failed
+      security:
+        - sessionId: []
     get:
       summary: GetPostIndex
       parameters:
         - name: type
           in: query
-          required: true
+          required: false
           schema:
             type: string
             enum: [latest, random]
+            default: latest
         - name: count
           in: query
-          required: true
+          required: false
           schema:
             type: integer
             minimum: 1
             maximum: 100
+            default: 25
       responses:
         '200':
           description: Get Post index success
@@ -65,6 +66,15 @@ paths:
                   properties:
                     postId:
                       type: string
+                    content:
+                      type: string
+                    author:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+                    likes:
+                      type: integer
 
   /posts/{postId}:
     get:
@@ -95,6 +105,55 @@ paths:
         '404':
           description: No posts exist
 
+    patch:
+      summary: EditPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+              required:
+                - content
+      responses:
+        '200':
+          description: Edit success
+        '401':
+          description: Auth failed
+        '403':
+          description: No permission
+        '404':
+          description: No posts exist
+      security:
+        - sessionId: []
+
+    delete:
+      summary: DelPost
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Del success
+        '401':
+          description: Auth Failed
+        '403':
+          description: No permission
+      security:
+        - sessionId: []
+
   /posts/{postId}/comments:
     post:
       summary: NewComment
@@ -111,12 +170,9 @@ paths:
             schema:
               type: object
               properties:
-                sessionId:
-                  type: string
                 comment:
                   type: string
               required:
-                - sessionId
                 - comment
       responses: 
         '201':
@@ -132,6 +188,74 @@ paths:
           description: Auth Failed
         '404':
           description: No posts exist
+      security:
+        - sessionId: []
+
+    get:
+      summary: GetComments
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Get comments success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    commentId:
+                      type: string
+                    comment:
+                      type: string
+                    author:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+        '404':
+          description: No posts exist
+
+    patch:
+      summary: EditComment
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+              required:
+                - comment
+      responses:
+        '200':
+          description: Edit success
+        '401':
+          description: Auth failed
+        '403':
+          description: No permission
+        '404':
+          description: No comments exist
+      security:
+        - sessionId: []
 
   /posts/{postId}/love:
     post:
@@ -149,10 +273,10 @@ paths:
             schema:
               type: object
               properties:
-                sessionId:
-                  type: string
+                favorite:
+                  type: boolean
               required:
-                - sessionId
+                - favorite
       responses:
         '200':
           description: Like Success
@@ -160,32 +284,13 @@ paths:
           description: Auth Failed
         '404':
           description: No posts exist
+      security:
+        - sessionId: []
 
-  /posts/{postId}/delete:
-    post:
-      summary: DelPost
-      parameters:
-        - name: postId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sessionId:
-                  type: string
-              required:
-                - sessionId
-      responses:
-        '200':
-          description: Del success
-        '401':
-          description: Auth Failed
-        '403':
-          description: No permission
+components:
+  securitySchemes:
+    sessionId:
+      type: apiKey
+      in: header
+      name: X-Session-Id
 

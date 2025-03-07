@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: Talkit Common API
+  title: Talker Common API
   version: 1.0.0
-  description: Talkit全般のAPI
+  description: TalkerのAPI
 servers:
-  - url: https://nandeyanen.ie-t.net/talkit/api/v1
+  - url: https://nandeyanen.ie-t.net/talkit/api/v1/Talker
     description: （使用できません）Version 1
 
 paths:
@@ -20,8 +20,11 @@ paths:
               properties:
                 email:
                   type: string
+                password:
+                  type: string
               required:
                 - email
+                - password
       responses:
         '200':
           description: Login success
@@ -34,8 +37,6 @@ paths:
                     type: string
         '401':
           description: Auth failed
-      security:
-        - password: []
 
   /logout:
     post:
@@ -95,7 +96,3 @@ components:
       type: apiKey
       in: header
       name: X-Session-Id
-    password:
-      type: apiKey
-      in: header
-      name: X-Password
