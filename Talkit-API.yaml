@@ -88,6 +88,42 @@ paths:
           description: Auth failed
       security:
         - sessionId: []
+  
+  /users:
+    get:
+      summary: GetUsers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+              required:
+                - username
+      responses:
+        '200':
+          description: User get success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        username:
+                          type: string
+                        iconUrl:
+                          type: string
+                        profile:
+                          type: string
+        '404':
+          description: User is Not Found
 
 components:
   securitySchemes:

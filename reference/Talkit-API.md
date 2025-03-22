@@ -63,3 +63,29 @@
   ```
   - `401 Unauthorized`: 認証失敗
 
+### 4. ユーザー情報取得
+**GET /users**
+ユーザー名、プロフィール、アイコンを返します
+**リクエストボディ**
+
+    ```json
+    {
+      "username": "string"
+    }
+    ```
+**レスポンス**
+  - `200 OK`: ユーザー情報取得成功
+    ```json
+    {
+      "users": [
+        {
+          "username": "string",
+          "iconUrl": "string",
+          "profile": "string"
+        }
+      ]
+    }
+    ```
+  - `404 NotFound`: ユーザーが存在しない 
+
+
